@@ -1,6 +1,6 @@
   import { Component, Input, OnInit,SimpleChanges } from '@angular/core';
   import { UsersCardsService } from './Services/users-cards.service';
-  import { user } from '../user.model'; // Assuming User model is defined
+  import { user } from '../user.model'; 
   import { Router } from '@angular/router';
 
 
@@ -11,11 +11,11 @@
   })
   
   export class UsersCardsComponent implements OnInit {
-    @Input() searchUserId: string = ''; // Renamed input property
-    user: user[] = []; // Assuming User model is used
-    p: number = 1; // Renamed pagination properties
-    usersPerpage: number = 3; // Renamed pagination properties
-    searchedUserId: string = ''; // Renamed searchedUserId property
+    @Input() searchUserId: string = ''; 
+    user: user[] = []; 
+    p: number = 1; 
+    usersPerpage: number = 3; 
+    searchedUserId: string = ''; 
     loading: boolean = false;
     users:any[]=[]
     filteredUsers: user = {
@@ -35,7 +35,6 @@
     ngOnChanges(changes: SimpleChanges): void {
       if (changes['searchUserId']) {
         this.filterUsers(this.searchUserId);
-        console.log(this.searchUserId,"hellooo") // Filter users when searchUserId changes
       }
     }
 
@@ -76,23 +75,3 @@
 
 
 
-
-
-    // onPageChange(page: number) {
-    //   this.p = page;
-    //   // Pagination logic if needed
-    // }
-
-    // backTohome(){
-    //   this.filteredUsers = {
-    //     avatar: undefined,
-    //     first_name: undefined,
-    //     last_name:undefined,
-    //     id: undefined,
-    //     email: undefined
-    //     };
-    // }
-
-
-
- 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SearchService } from './search.service';
-import { user } from '../../users/user.model'; // Import User model if not already imported
+import { user } from '../../users/user.model'; 
 
 @Component({
   selector: 'app-header',
@@ -8,8 +8,7 @@ import { user } from '../../users/user.model'; // Import User model if not alrea
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Output() searchUserIdChanged = new EventEmitter<string>(); // Emit User type for search user
-  @Output() searchResults = new EventEmitter<any>(); // Emit User type for search user
+  @Output() searchResults = new EventEmitter<any>(); 
   searchQuery: string = ''; // Store the search query entered by the user
   suggestedUsers: user[] = []; // Store suggested users based on the search query
   searchUserId: any;
@@ -23,19 +22,14 @@ export class HeaderComponent implements OnInit {
     this.searchService.getUserbyid(this.searchQuery).subscribe((suggestedUsers: any) => {
       this.suggestedUsers = suggestedUsers;
       this.searchResults.emit(suggestedUsers.data);
-      console.log(suggestedUsers, "hello");  
     });
   }
 
   selectUser(user: user): void {
-    // Emit the selected user when the user clicks on a suggested user
-    this.searchUserIdChanged.emit(this.searchUserId);
-    // Clear the search query and suggested users
     this.searchQuery = '';
     this.suggestedUsers = [];
   }
 
-  
 }
 
 

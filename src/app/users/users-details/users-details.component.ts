@@ -22,7 +22,6 @@ export class UsersDetailsComponent implements OnInit{
 
   constructor(private service:UsersCardsService, private route: ActivatedRoute, private router: Router){
     this.id = this.route.snapshot.paramMap.get('id');
-    console.log(this.id, "we are gonna make it inshallaah");
   }
 
   ngOnInit(): void {
@@ -55,18 +54,4 @@ export class UsersDetailsComponent implements OnInit{
     this.loading = false;
   }
 
-  // getUserDetails(id: string) {
-  //   this.service.getUserbyid(id).subscribe(
-  //     (res: user) => {
-  //       console.log(res, "todday");
-  //       this.filteredUsers = res; // Assign the response to filteredUsers
-  //     },
-  //     (error) => {
-  //       console.error("Error fetching user details:", error);
-  //     }
-  //   );
-  // }
-
-
-  
 }
