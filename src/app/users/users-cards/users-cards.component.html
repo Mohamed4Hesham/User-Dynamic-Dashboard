@@ -1,0 +1,51 @@
+<!-- <div *ngFor="let user of users[4]">
+    <div>
+        <img src="{{user.avatar}}" alt="User Avatar" width="300px" height="200px">
+        <p>Name: {{ user.first_name }} {{user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>ID: {{ user.id }}</p>
+    </div>
+</div> -->
+
+<app-header (searchUserIdChanged)="filterUsers($event)" (searchResults)="filterUsers($event)"></app-header>
+
+<div class="container bg-light mt-5" style="padding: 0 60px;" *ngIf="!loading" >
+    <div class="row custom-margin-top"  *ngIf=" !filteredUsers.id; else resultBlock ">
+        <div class="col-md-4 mt-5" *ngFor="let user of users[4] | paginate: { itemsPerPage: usersPerpage, currentPage: p }">
+            <div class="card">
+                <img src="{{ user.avatar }}" class="card-img-top" alt="User Avatar" width="200px" height="300px">
+                <div class="card-body">
+                <strong><p class="card-text text-center mt-1">{{ user.first_name }} {{ user.last_name }}</p></strong>    
+                    <p class="card-text text-muted text-center mt-1 mb-3">{{ user.email }}</p>
+                    <p class="card-text text-center">user id: <span style="font-weight: bold;" >{{ user.id }}</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+    <ng-template #resultBlock>
+        <div class="row justify-content-center">
+            <div class="col-md-4 py-5">
+                <div class="card">
+                    <img src="{{ filteredUsers.avatar }}" class="card-img-top" alt="User Avatar" width="200px" height="300px">
+                    <div class="card-body">
+                        <strong>
+                            <p class="card-text text-center mt-1">{{ filteredUsers.first_name }} {{ filteredUsers.last_name }}</p>
+                        </strong>    
+                        <p class="card-text text-muted text-center mt-1 mb-3">{{ filteredUsers.email }}</p>
+                        <p class="card-text text-center">user id: <span style="font-weight: bold;">{{ filteredUsers.id}}</span></p>
+                    </div>
+                    <button class="btn btn-outline-dark d-block mx-auto my-3" (click)="checkMoredetails()"> More details</button>
+                </div>
+            </div>
+        </div>
+    </ng-template>    
+</div> 
+
+<div class="d-flex justify-content-center align-items-center" style="width:auto; height:100vh" *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
+
+
